@@ -11,8 +11,7 @@ CREATE TABLE manager (
     experience TEXT NOT NULL,
     display_name TEXT NOT NULL,
     photoLink TEXT,
-    active Boolean,
-    FOREIGN KEY (owner_id) REFERENCES roster (owner_id)
+    active Boolean
 );
 
 CREATE TABLE roster (
