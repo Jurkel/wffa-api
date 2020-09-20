@@ -317,55 +317,6 @@ describe('App', () => {
 
   //END: PLAYER TEST
 
-  //START: ROSTER TEST
-
-  describe('Get all roster ', () => {
-    it('GET /roster responds with 200 containing an array of length of > 1', () => {
-        supertest(app)
-        .get('/roster/')
-        .expect(200)
-        .then(res => {
-          // make sure you get an array
-          expect(res.body).to.be.an('object');
-          // array must not be empty
-          expect(res.body).to.have.lengthOf.at.least(12);
-        });
-    })
-  })
-
-  describe('Get roster by id ', () => {
-    it('GET /roster/id responds with 200 containing an array of length of > 1', () => {
-        const id = '123344';
-        supertest(app)
-        .get(`/roster/id/${id}`)
-        .expect(200)
-        .then(res => {
-          // make sure you get an array
-          expect(res.body).to.be.an('object');
-          // array must not be empty
-          expect(res.body).to.have.lengthOf.at.least(1);
-        });
-    })
-  })
-
-  describe('Get league by id ', () => {
-    it('GET /roster/league-id responds with 200 containing an array of length of > 1', () => {
-        const id = '123344';
-        supertest(app)
-        .get(`/roster/league-id/${id}`)
-        .expect(200)
-        .then(res => {
-          // make sure you get an array
-          expect(res.body).to.be.an('object');
-          // array must not be empty
-          expect(res.body).to.have.lengthOf.at.least(1);
-        });
-    })
-  })
-
-  //END: ROSTER TEST
-  
-
 
 //   describe('manager with first abv not found', () => {
 //     it('responds with 404 with error message', () => {

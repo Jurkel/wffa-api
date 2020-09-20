@@ -6,7 +6,6 @@ const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const playerRouter = require('./player/player-router');
 const managerRouter = require('./manager/manager-router');
-const rosterRouter = require('./roster/roster-router');
 
 const app = express();
 
@@ -20,7 +19,6 @@ app.use(cors());
 
 app.use('/player', playerRouter);
 app.use('/manager', managerRouter);
-app.use('/roster', rosterRouter);
 
 app.get('/', (req, res) => {
   res.send('WFFL Home!')
