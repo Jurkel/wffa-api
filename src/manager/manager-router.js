@@ -94,8 +94,8 @@ managerRouter
 .route('/display/:displayName')
 .get((req, res, next) => {
     ManagerService.getManagerByDisplayName(req.app.get('db'), req.params.displayName)
-    .then((lastName) => {
-        if(!lastName) {
+    .then((displayName) => {
+        if(!displayName) {
             return res.status(404).json( {
                 error: {message: 'Display name does not exist'}
             })
