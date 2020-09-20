@@ -52,7 +52,7 @@ managerRouter
 })
 
 managerRouter
-.route('/first-name/:firstName')
+.route('/first/:firstName')
 .get((req, res, next) => {
     ManagerService.getManagerByFirstName(req.app.get('db'), req.params.firstName)
     .then((firstName) => {
@@ -72,7 +72,7 @@ managerRouter
 })
 
 managerRouter
-.route('/last-name/:lastName')
+.route('/last/:lastName')
 .get((req, res, next) => {
     ManagerService.getManagerByLastName(req.app.get('db'), req.params.lastName)
     .then((lastName) => {
@@ -91,7 +91,7 @@ managerRouter
 })
 
 managerRouter
-.route('/display-name/:displayName')
+.route('/display/:displayName')
 .get((req, res, next) => {
     ManagerService.getManagerByDisplayName(req.app.get('db'), req.params.displayName)
     .then((lastName) => {
@@ -117,37 +117,6 @@ managerRouter
             }) 
         }
         return res.status(200).send('Display Name:' + req.params.displayName + ' successfully updated');
-    })
-})
-
-
-managerRouter
-.route('/team-name/:teamName')
-.get((req, res, next) => {
-    ManagerService.getManagerByTeamName(req.app.get('db'), req.params.teamName)
-    .then((teamName) => {
-        if(!teamName) {
-            return res.status(404).json( {
-                error: {message: 'Teamn name does not exist'}
-            })
-        }
-        res.teamName = teamName;
-        next();
-    })
-    .catch(next);
-})
-.get((req, res, next) => {
-    res.json(res.teamName);
-})
-.put((req, res, next) => {
-    ManagerService.updateManagerByTeamName(req.app.get('db'), req.params.teamName, req.body)
-    .then((updateManager) => {
-        if(!updateManager) {
-            return res.status(404).json( {
-                error: {message: 'Manager: Team name cannot be updated'}
-            }) 
-        }
-        return res.status(200).send('Team Name:' + req.params.teamName + ' successfully updated');
     })
 })
 

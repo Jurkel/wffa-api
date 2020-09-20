@@ -43,7 +43,7 @@ playerRouter
 })
 
 playerRouter
-.route('/first-name/:firstName')
+.route('/first/:firstName')
 .get((req, res, next) => {
     PlayerService.getPlayerByFirstName(req.app.get('db'), req.params.firstName)
     .then((player) => {
@@ -59,7 +59,7 @@ playerRouter
 })
 
 playerRouter
-.route('/last-name/:lastName')
+.route('/last/:lastName')
 .get((req, res, next) => {
     PlayerService.getPlayerByLastName(req.app.get('db'), req.params.lastName)
     .then((player) => {
@@ -75,7 +75,7 @@ playerRouter
 })
 
 playerRouter
-.route('/ids-first-name/:idsFirstName')
+.route('/idsFirst/:idsFirstName')
 .get((req, res, next) => {
     PlayerService.getPlayerIdsByFirstName(req.app.get('db'), req.params.idsFirstName)
     .then((ids) => {
@@ -91,7 +91,7 @@ playerRouter
 })
 
 playerRouter
-.route('/ids-last-name/:idsLastName')
+.route('/idsLast/:idsLastName')
 .get((req, res, next) => {
     PlayerService.getPlayerIdsByLastName(req.app.get('db'), req.params.idsLastName)
     .then((ids) => {
@@ -107,7 +107,7 @@ playerRouter
 })
 
 playerRouter
-.route('/ids-full-name/:idsFullName')
+.route('/idsFull/:idsFullName')
 .get((req, res, next) => {
     PlayerService.getPlayerIdsByFullName(req.app.get('db'), req.params.idsFullName)
     .then((ids) => {
@@ -123,7 +123,7 @@ playerRouter
 })
 
 playerRouter
-.route('/id-name/:idName')
+.route('/idName/:idName')
 .get((req, res, next) => {
     PlayerService.getPlayerNamesById(req.app.get('db'), req.params.idName)
     .then((names) => {
@@ -139,7 +139,7 @@ playerRouter
 })
 
 playerRouter
-.route('/stat-name/:statName')
+.route('/statName/:statName')
 .get((req, res, next) => {
     PlayerService.getPlayerStatByFullName(req.app.get('db'), req.params.statName)
     .then((stat) => {
@@ -155,7 +155,7 @@ playerRouter
 })
 
 playerRouter
-.route('/stat-id/:statId')
+.route('/statId/:statId')
 .get((req, res, next) => {
     PlayerService.getPlayerStatById(req.app.get('db'), req.params.statId)
     .then((stat) => {
@@ -171,7 +171,7 @@ playerRouter
 })
 
 playerRouter
-.route('/injury-stat-names/:injuryStatNames')
+.route('/injuryStatName/:injuryStatNames')
 .get((req, res, next) => {
     PlayerService.getPlayerInjuryStatByFullName(req.app.get('db'), req.params.injuryStatNames)
     .then((stat) => {
@@ -187,7 +187,7 @@ playerRouter
 })
 
 playerRouter
-.route('/injury-stat-id/:injuryStatId')
+.route('/injuryStatId/:injuryStatId')
 .get((req, res, next) => {
     PlayerService.getPlayerInjuryStatById(req.app.get('db'), req.params.injuryStatId)
     .then((stat) => {
@@ -203,7 +203,7 @@ playerRouter
 })
 
 playerRouter
-.route('/info-name/:playerNames')
+.route('/infoName/:playerNames')
 .get((req, res, next) => {
     PlayerService.getPlayerInfoByFullName(req.app.get('db'), req.params.playerNames)
     .then((info) => {
@@ -219,7 +219,7 @@ playerRouter
 })
 
 playerRouter
-.route('/info-id/:playerId')
+.route('/infoId/:playerId')
 .get((req, res, next) => {
     PlayerService.getPlayerInfoById(req.app.get('db'), req.params.playerId)
     .then((info) => {
