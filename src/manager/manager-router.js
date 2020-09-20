@@ -7,10 +7,19 @@ managerRouter
 .get((req, res, next) => {
     ManagerService.getAllManagers(req.app.get('db'))
     .then((managers) => {
-        res.send(managers);
-        res.json();
+        if(!managers) {
+            return res.status(404).json( {
+                error: {message: 'Managers does not exist'}
+            })
+        }
+        res.managers = managers;
+        next();
     })
-});
+    .catch(next);
+})
+.get((req, res, next) => {
+    res.json(res.managers);
+})
 
 managerRouter
 .route('/id/:managerId')
