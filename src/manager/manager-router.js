@@ -47,6 +47,7 @@ managerRouter
 .get((req, res, next) => {
     ManagerService.getManagerByFirstName(req.app.get('db'), req.params.firstName)
     .then((firstName) => {
+        console.log('first name: ' + firstName);
         if(!firstName) {
             return res.status(404).json( {
                 error: {message: 'First Name does not exist'}
