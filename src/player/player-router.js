@@ -7,8 +7,7 @@ playerRouter
 .get((req, res, next) => {
     PlayerService.getAllPlayers(req.app.get('db'))
     .then((players) => {
-        res.send(players);
-        res.json();
+        res.json(players);
     })
 })
 
@@ -52,8 +51,7 @@ playerRouter
                 error: {message: 'Player does not exist'}
             })
         } else {
-            res.send(player);
-            res.json();
+            res.json(player);
         }
     })
 })
@@ -68,8 +66,7 @@ playerRouter
                 error: {message: 'Player does not exist'}
             })
         } else {
-            res.send(player);
-            res.json();
+            res.json(player);
         }
     })
 })
@@ -84,8 +81,7 @@ playerRouter
                 error: {message: 'Player Ids does not exist'}
             })
         } else {
-            res.send(ids);
-            res.json();
+            res.json(ids);
         }
     })
 })
@@ -100,8 +96,7 @@ playerRouter
                 error: {message: 'Player Ids does not exist'}
             })
         } else {
-            res.send(ids);
-            res.json();
+            res.json(ids);
         }
     })
 })
@@ -116,8 +111,7 @@ playerRouter
                 error: {message: 'Player Ids does not exist'}
             })
         } else {
-            res.send(ids);
-            res.json();
+            res.json(ids);
         }
     })
 })
@@ -132,8 +126,7 @@ playerRouter
                 error: {message: 'Player name does not exist with the id'}
             })
         } else {
-            res.send(names);
-            res.json();
+            res.json(names);
         }
     })
 })
@@ -148,8 +141,7 @@ playerRouter
                 error: {message: 'Player Stats does not exist'}
             })
         } else {
-            res.send(stat);
-            res.json();
+            res.json(stat);
         }
     })
 })
@@ -164,8 +156,7 @@ playerRouter
                 error: {message: 'Player Stats does not exist'}
             })
         } else {
-            res.send(stat);
-            res.json();
+            res.json(stat);
         }
     })
 })
@@ -180,8 +171,7 @@ playerRouter
                 error: {message: 'Player Stats does not exist'}
             })
         } else {
-            res.send(stat);
-            res.json();
+            res.json(stat);
         }
     })
 })
@@ -196,8 +186,7 @@ playerRouter
                 error: {message: 'Player Stats does not exist'}
             })
         } else {
-            res.send(stat);
-            res.json();
+            res.json(stat);
         }
     })
 })
@@ -212,8 +201,7 @@ playerRouter
                 error: {message: 'Player Info does not exist'}
             })
         } else {
-            res.send(info);
-            res.json();
+            res.json(info);
         }
     })
 })
@@ -228,8 +216,7 @@ playerRouter
                 error: {message: 'Player Info does not exist'}
             })
         } else {
-            res.send(info);
-            res.json();
+            res.json(info);
         }
     })
 })
