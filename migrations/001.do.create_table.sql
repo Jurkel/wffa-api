@@ -14,16 +14,6 @@ CREATE TABLE manager (
     active Boolean
 );
 
-CREATE TABLE roster (
-    owner_id TEXT PRIMARY KEY,
-    league_id TEXT,
-    players integer[],
-    playersNames TEXT[],
-    starters INTEGER[],
-    startersNames TEXT[],
-    FOREIGN KEY (owner_id) REFERENCES manager (owner_id)
-);
-
 CREATE TABLE player (
     id SERIAL PRIMARY KEY,
     position TEXT,
