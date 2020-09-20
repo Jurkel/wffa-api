@@ -124,7 +124,7 @@ managerRouter
 managerRouter
 .route('/team-name/:teamName')
 .get((req, res, next) => {
-    ManagerService.getManagerByDisplayName(req.app.get('db'), req.params.lastName)
+    ManagerService.getManagerByTeamName(req.app.get('db'), req.params.teamName)
     .then((teamName) => {
         if(!teamName) {
             return res.status(404).json( {
