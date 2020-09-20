@@ -18,12 +18,12 @@ CREATE TABLE manager (
 CREATE TABLE roster (
     owner_id INT PRIMARY KEY,
     league_id INT,
-    players INTEGER[],
+    players integer[],
     playersNames TEXT[],
     starters INTEGER[],
     startersNames TEXT[],
     FOREIGN KEY (owner_id) REFERENCES manager (owner_id)
-)
+);
 
 CREATE TABLE player (
     id SERIAL PRIMARY KEY,
@@ -73,3 +73,6 @@ CREATE TABLE player (
     team TEXT,
     search_rank INT
 );
+
+
+
