@@ -5,17 +5,17 @@ const ManagerService = {
     getManagerById(knex, id) {
         return knex.select('*').from('manager').where({owner_id: id}).first();
     },
-    getManagerByFirstName(knex, name) {
-        return knex.select('*').from('manager').where({firstName: `${name}`});
+    getManagerByFirstName(knex, firstName) {
+        return knex.select('*').from('manager').where({firstName: `${firstName}`});
     },
-    getManagerByLastName(knex, name) {
-        return knex.select('*').from('manager').where({lastName: `${name}`});
+    getManagerByLastName(knex, lastName) {
+        return knex.select('*').from('manager').where('lastName', `${lastName}`);
     },
-    getManagerByDisplayName(knex, name) {
-        return knex.select('*').from('manager').where({display_name: `${name}`});
+    getManagerByDisplayName(knex, displayName) {
+        return knex.select('*').from('manager').where('display_name', displayName);
     },
-    getManagerByTeamName(knex, name) {
-        return knex.select('*').from('manager').where({team_name: `${name}`});
+    getManagerByTeamName(knex, teamName) {
+        return knex.select('*').from('manager').where({team_name: `${teamName}`});
     },
     updateManagerById(knex, id, data) {
         return knex('manager').where({owner_id, id}).update(data);
