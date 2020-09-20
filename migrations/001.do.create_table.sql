@@ -1,6 +1,6 @@
 CREATE TABLE manager (
-    owner_id INT PRIMARY KEY,
-    league_id INT,
+    owner_id TEXT PRIMARY KEY,
+    league_id TEXT,
     firstName TEXT NOT NULL,
     lastName TEXT NOT NULL,
     height TEXT NOT NULL,
@@ -15,8 +15,8 @@ CREATE TABLE manager (
 );
 
 CREATE TABLE roster (
-    owner_id INT PRIMARY KEY,
-    league_id INT,
+    owner_id TEXT PRIMARY KEY,
+    league_id TEXT,
     players integer[],
     playersNames TEXT[],
     starters INTEGER[],
@@ -58,7 +58,7 @@ CREATE TABLE player (
     espn_id INT,
     birth_state TEXT,
     news_updated TEXT,
-    sportradar_id INT,
+    sportradar_id TEXT,
     birth_date DATE,
     years_exp INT,
     stats_id INT,
@@ -69,8 +69,7 @@ CREATE TABLE player (
     birth_city INT,
     weight TEXT,
     birth_cityd TEXT,
-    team TEXT,
-    search_rank INT
+    team TEXT
 );
 
 
