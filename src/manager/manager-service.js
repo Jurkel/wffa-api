@@ -3,7 +3,7 @@ const ManagerService = {
         return knex.select('*').from('manager');
     },
     getManagerById(knex, id) {
-        return knex.select('*').from('manager').where({sleeper_user_id: id}).first();
+        return knex.select('*').from('manager').where({owner_id: id}).first();
     },
     getManagerByFirstName(knex, name) {
         return knex.select('*').from('manager').where({firstName: `${name}`});
@@ -18,7 +18,7 @@ const ManagerService = {
         return knex.select('*').from('manager').where({team_name: `${name}`});
     },
     updateManagerById(knex, id, data) {
-        return knex('manager').where({sleeper_user_id, id}).update(data);
+        return knex('manager').where({owner_id, id}).update(data);
     },
     updateManagerByDisplayName(knex, name, data) {
         return knex('manager').where({display_name: `${name}`}).update(data);
