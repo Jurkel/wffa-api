@@ -100,24 +100,6 @@ describe('App', () => {
         });
     })
   })
-
-  describe('manager by team name', () => {
-    it('GET /manager/team-name responds with 200 containing an array of length of 1 -1', () => {
-      const teamName = 'team ashcity';
-        supertest(app)
-        .get(`/manager/team-name/${teamName}`)
-        .expect(200)
-        .then(res => {
-          // make sure you get an array
-          expect(res.body).to.be.an('object');
-          // array must not be empty
-          expect(res.body).to.have.lengthOf.at.least(1);
-          // array must be length 50
-          expect(res.body).to.have.lengthOf(1);
-          
-        });
-    })
-  })
   //END: MANAGER TEST
 
   //START: PLAYER TEST

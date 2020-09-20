@@ -52,7 +52,7 @@ managerRouter
 })
 
 managerRouter
-.route('/firstname/:firstName')
+.route('/first-name/:firstName')
 .get((req, res, next) => {
     ManagerService.getManagerByFirstName(req.app.get('db'), req.params.firstName)
     .then((firstName) => {
@@ -72,7 +72,7 @@ managerRouter
 })
 
 managerRouter
-.route('/lastName/:lastName')
+.route('/last-name/:lastName')
 .get((req, res, next) => {
     ManagerService.getManagerByLastName(req.app.get('db'), req.params.lastName)
     .then((lastName) => {
