@@ -6,10 +6,10 @@ const ManagerService = {
         return knex.select('*').from('manager').where({owner_id: id}).first();
     },
     getManagerByFirstName(knex, name) {
-        return knex.select('*').from('manager').where({firstName: name});
+        return knex.select('*').from('manager').where({firstname: name});
     },
     getManagerByLastName(knex, name) {
-        return knex.select('*').from('manager').where(lastName, name);
+        return knex.select('*').from('manager').where(lastname, name);
     },
     getManagerByDisplayName(knex, name) {
         return knex.select('*').from('manager').where(display_name, name);
