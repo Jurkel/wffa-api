@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const playerRouter = require('./player/player-router');
 const managerRouter = require('./manager/manager-router');
+const fetch = require('fetch');
 
 const app = express();
 
@@ -21,7 +22,18 @@ app.use('/player', playerRouter);
 app.use('/manager', managerRouter);
 
 app.get('/', (req, res) => {
-  res.send('WFFL Home!')
+  fetch('https://lailafitriana.s3.amazonaws.com/players.json')
+  .then(response => res.json())
+  .then(players => {
+    let lengths = players.length;
+    players.forEach((player, index) => {
+      delete player.height;
+      if(index == lengths - 1) {
+        res.json(players);
+      }
+    })
+  })
+  // res.send('WFFL Home!')
 })
 
 app.get('/xss', (req, res) => {

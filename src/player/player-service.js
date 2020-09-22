@@ -45,6 +45,9 @@ const PlayerService = {
     },
     updatePlayerById(knex, id, data) {
         return knex('player').where({player_id, id}).update(data);
+    },
+    updatePlayerInfo(knex, data) {
+        return knex('player').update({player_info: JSON.stringify(data)})
     }
 }
 
