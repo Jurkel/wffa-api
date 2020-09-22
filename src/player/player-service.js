@@ -1,24 +1,9 @@
 const PlayerService = {
     getAllPlayers(knex) {
-        return knex.select('*').from('player');
+        return knex.select('player_info').from('player');
     },
     getPlayerById(knex, id) {
-        return knex.select('*').from('player').where({player_id: id}).first();
-    },
-    getPlayerByFirstName(knex, name) {
-        return knex.select('*').where({ first_name: name});
-    },
-    getPlayerByLastName(knex, name) {
-        return knex.select('*').where({ last_name: name});
-    },
-    getPlayerIdsByFirstName(knex, name) {
-        return knex.select('player_id', 'pandascore_id', 'yahoo_id', 'espn_id', 'sportradar_id', 'stats_id', 'rotowire_id', 'full_name').where({ first_name: name});
-    },
-    getPlayerIdsByLastName(knex, name) {
-        return knex.select('player_id', 'pandascore_id', 'yahoo_id', 'espn_id', 'sportradar_id', 'stats_id', 'rotowire_id', 'full_name').where({ last_name: name});
-    },
-    getPlayerIdsByFullName(knex, name) {
-        return knex.select('player_id', 'pandascore_id', 'yahoo_id', 'espn_id', 'sportradar_id', 'stats_id', 'rotowire_id').where({ full_name: name});
+        return knex.select('player_info').from('player').whereRaw('data -> ', [player_id, JSON.stringify(id)]).first();
     },
     getPlayerNamesById(knex, id) {
         return knex.select('full_name', 'first_name', 'last_name').where({ player_id: id});

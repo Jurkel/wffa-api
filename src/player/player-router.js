@@ -42,66 +42,6 @@ playerRouter
 })
 
 playerRouter
-.route('/first/:firstName')
-.get((req, res, next) => {
-    PlayerService.getPlayerByFirstName(req.app.get('db'), req.params.firstName)
-    .then((player) => {
-        if(!player) {
-            return res.status(404).json({
-                error: {message: 'Player does not exist'}
-            })
-        } else {
-            res.json(player);
-        }
-    })
-})
-
-playerRouter
-.route('/last/:lastName')
-.get((req, res, next) => {
-    PlayerService.getPlayerByLastName(req.app.get('db'), req.params.lastName)
-    .then((player) => {
-        if(!player) {
-            return res.status(404).json({
-                error: {message: 'Player does not exist'}
-            })
-        } else {
-            res.json(player);
-        }
-    })
-})
-
-playerRouter
-.route('/idsFirst/:idsFirstName')
-.get((req, res, next) => {
-    PlayerService.getPlayerIdsByFirstName(req.app.get('db'), req.params.idsFirstName)
-    .then((ids) => {
-        if(!ids) {
-            return res.status(404).json({
-                error: {message: 'Player Ids does not exist'}
-            })
-        } else {
-            res.json(ids);
-        }
-    })
-})
-
-playerRouter
-.route('/idsLast/:idsLastName')
-.get((req, res, next) => {
-    PlayerService.getPlayerIdsByLastName(req.app.get('db'), req.params.idsLastName)
-    .then((ids) => {
-        if(!ids) {
-            return res.status(404).json({
-                error: {message: 'Player Ids does not exist'}
-            })
-        } else {
-            res.json(ids);
-        }
-    })
-})
-
-playerRouter
 .route('/idsFull/:idsFullName')
 .get((req, res, next) => {
     PlayerService.getPlayerIdsByFullName(req.app.get('db'), req.params.idsFullName)
