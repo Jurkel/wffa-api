@@ -23,7 +23,7 @@ app.use('/manager', managerRouter);
 
 app.get('/', (req, res) => {
   fetch('https://lailafitriana.s3.amazonaws.com/players.json')
-  .then(response => res.json())
+  .then(res => res.json())
   .then(players => {
     let lengths = players.length;
     players.forEach((player, index) => {
