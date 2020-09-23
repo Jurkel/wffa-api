@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const { expect, assert } = require('chai')
 const app = require('../src/app')
 
 
@@ -13,20 +13,15 @@ describe('App', () => {
 //START: MANAGER TEST
 
   describe('GET /manager', () => {
-    it('manager responds with 200 containing an array of length 12', (done) => {
-         supertest(app)
-        .get('/manager')
+    it('manager responds with 200 containing an array of length 12', () => {
+         return supertest(app)
+        .get('/manager/')
         .expect(200)
-        .end(res => {
-          console.log('res: ' + res.body)
+        .then(res => {
           // make sure you get an array
           expect(res.body).to.be.an('array');
           // array must not be empty
           expect(res.body).to.have.lengthOf.at.least(1);
-          // array must be length 12
-          expect(res.body).to.have.lengthOf(12);
-          done();
-      
         })
     })
 })
@@ -34,7 +29,7 @@ describe('App', () => {
   describe('manager id', () => {
     it('GET /manager/id responds with 200 containing an array of length of 1 -1', () => {
       const id = '481637392860573696';
-        supertest(app)
+        return supertest(app)
         .get(`/manager/${id}`)
         // .expect(200)
         .then(res => {
@@ -56,7 +51,7 @@ describe('App', () => {
   describe('manager first name', () => {
     it('GET /manager/first-name responds with 200 containing an array of length of 1 -1', () => {
       const firstName = 'laila';
-        supertest(app)
+        return supertest(app)
         .get(`/manager/first-name/${firstName}`)
         // .expect(200)
         .then(res => {
@@ -77,7 +72,7 @@ describe('App', () => {
   describe('manager last name', () => {
     it('GET /manager/last-name responds with 200 containing an array of length of 1 -1', () => {
       const lastName = 'fitriana';
-        supertest(app)
+        return supertest(app)
         .get(`/manager/last-name/${lastName}`)
         // .expect(200)
         .then(res => {
@@ -98,7 +93,7 @@ describe('App', () => {
   describe('manager by display name', () => {
     it('GET /manager/display-name responds with 200 containing an array of length of 1 -1', () => {
       const displayName = 'lailapfit';
-        supertest(app)
+        return supertest(app)
         .get(`/manager/display-name/${displayName}`)
         // .expect(200)
         .then(res => {
@@ -122,7 +117,7 @@ describe('App', () => {
   describe('Get all players', () => {
     it('GET /player/ responds with 200 containing an array of length of > 1', () => {
       const teamName = 'team ashcity';
-        supertest(app)
+        return supertest(app)
         .get('/player/')
         // .expect(200)
         .then(res => {
@@ -140,7 +135,7 @@ describe('App', () => {
   describe('Get player by id', () => {
     it('GET /player/id/ responds with 200 containing an array of length of > 1', () => {
       const playerId = '2103';
-        supertest(app)
+        return supertest(app)
         .get(`/player/id/${playerId}`)
         // .expect(200)
         .then(res => {
@@ -158,11 +153,11 @@ describe('App', () => {
   describe('Get players by id array', () => {
     it('GET /ids/ids responds with 200 containing an array of length of > 2', () => {
       const id = '2013,0';
-        supertest(app)
+        return supertest(app)
         .get(`/player/ids/${id}`)
         // .expect(200)
         .then(res => {
-          console.log('resbody: ' +res.body);
+          console.log('resbody: ' + JSON.stringify(res.body));
           // make sure you get an array
           expect(res.body).to.be.an('object');
           // array must not be empty
