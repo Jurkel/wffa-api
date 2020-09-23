@@ -19,7 +19,7 @@ const PlayerService = {
             return `select player_info-> '${id}' as player from player`;
         }
         ids.forEach((id, index) => {
-            let select = this.dynamicSelect(id);
+            let select = dynamicSelect(id);
             if (index == totalPlayers - 1) {
                 selects += select;
             } else {
