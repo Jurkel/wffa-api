@@ -23,7 +23,7 @@ const PlayerService = {
             if (index == totalPlayers - 1) {
                 selects += select;
             } else {
-                selects += select + 'union all ';
+                selects += select + ' union all ';
             }
         })
         return selects;
