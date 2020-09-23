@@ -3,7 +3,7 @@ const PlayerService = {
         return knex.select('player_info').from('player');
     },
     getPlayerById(knex, id) {
-        return knex.select(knex.raw(`select player_info-> '${id}'`)).from('player');
+        return knex.select(knex.raw(`player_info-> '${id}'`)).from('player');
     },
     getPlayersByIds(knex, ids) {
         let selectStatements = [];
