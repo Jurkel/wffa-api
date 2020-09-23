@@ -57,7 +57,7 @@ playerRouter
     console.log('playerIds call req: ' + req.params.playerIds);
     PlayerService.getPlayersByIds(req.app.get('db'), req.params.playerIds)
     .then((players) => {
-        if(!ids) {
+        if(!players) {
             return res.status(404).json({
                 error: {message: 'Players does not exist'}
             })
