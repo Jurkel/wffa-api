@@ -13,13 +13,15 @@ const PlayerService = {
         let two= playerIds[1];
         console.log('getPlayersByIds function id 0: ' + playerIds[0]);
         console.log('getPlayersByIds function id 1: ' + playerIds[1]);
-        let union = knex.select(knex.raw(`player_info-> '${one}' as player`)).from('player')
+        console.log(knex.select(knex.raw(`player_info-> '${one}' as player`)).from('player')
         .unionAll(function() {
             this.select(knex.raw(`player_info-> '${two}'`).from('player'))
-        });
+        }));
         // let selectStatements = this.unionAll(knex, playerIds);
-        console.log('union statement: ' + union);
-        return union;
+        return knex.select(knex.raw(`player_info-> '${one}' as player`)).from('player')
+        .unionAll(function() {
+            this.select(knex.raw(`player_info-> '${two}'`).from('player'))
+        });;
     },
     // unionAll(knex, ids) {
     //     let selectStatements = [];
