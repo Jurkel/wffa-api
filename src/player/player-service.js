@@ -3,7 +3,7 @@ const PlayerService = {
         return knex.select('player_info').from('player');
     },
     getPlayerById(knex, id) {
-        return knex.select(knex.raw(`player_info-> '${id}'`)).from('player');
+        return knex.select(knex.raw(`player_info-> '${id}' as player`)).from('player');
     },
     getPlayersByIds(knex, ids) {
         let selectStatements = [];
@@ -24,7 +24,7 @@ const PlayerService = {
             } 
         })
 
-        return knex.raw("select player_info-> '" + completeSelectStatements[0] + "'").from('player').unionAll(selectStatements);
+        return knex.select(knex.raw(`player_info-> '${completeSelectStatements[0]}' as player`)).from('player').unionAll(selectStatements);
     },
     updatePlayerInfo(knex, data) {
         let dataString = JSON.stringify(data).replace(/'/g, '');
