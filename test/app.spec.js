@@ -1,3 +1,4 @@
+const { expect } = require('chai')
 const app = require('../src/app')
 
 
@@ -15,7 +16,7 @@ describe('App', () => {
     it('manager responds with 200 containing an array of length 12', () => {
          supertest(app)
         .get('/manager')
-        .expect(200)
+        // .expect(200)
         .then(res => {
           console.log('res: ' + res.body)
           // make sure you get an array
@@ -25,7 +26,10 @@ describe('App', () => {
           // array must be length 12
           expect(res.body).to.have.lengthOf(12);
       
-        });
+        })
+        .catch(error => {
+          console.log('error' + error);
+        })
     })
 })
   
@@ -34,7 +38,7 @@ describe('App', () => {
       const id = 'idhere';
         supertest(app)
         .get(`/registration/${id}`)
-        .expect(200)
+        // .expect(200)
         .then(res => {
           // make sure you get an array
           expect(res.body).to.be.an('object');
@@ -43,7 +47,10 @@ describe('App', () => {
           // array must be length 50
           expect(res.body).to.have.lengthOf(1);
           
-        });
+        })
+        .catch(error => {
+          console.log('error' + error);
+        })
     })
   })
 
@@ -52,7 +59,7 @@ describe('App', () => {
       const firstName = 'laila';
         supertest(app)
         .get(`/manager/first-name/${firstName}`)
-        .expect(200)
+        // .expect(200)
         .then(res => {
           // make sure you get an array
           expect(res.body).to.be.an('object');
@@ -61,7 +68,10 @@ describe('App', () => {
           // array must be length 50
           expect(res.body).to.have.lengthOf(1);
           
-        });
+        })
+        .catch(error => {
+          console.log('error' + error);
+        })
     })
   })
 
@@ -70,7 +80,7 @@ describe('App', () => {
       const lastName = 'fitriana';
         supertest(app)
         .get(`/manager/last-name/${lastName}`)
-        .expect(200)
+        // .expect(200)
         .then(res => {
           // make sure you get an array
           expect(res.body).to.be.an('object');
@@ -79,7 +89,10 @@ describe('App', () => {
           // array must be length 50
           expect(res.body).to.have.lengthOf(1);
           
-        });
+        })
+        .catch(error => {
+          console.log('error' + error);
+        })
     })
   })
 
@@ -88,7 +101,7 @@ describe('App', () => {
       const displayName = 'lailapfit';
         supertest(app)
         .get(`/manager/display-name/${displayName}`)
-        .expect(200)
+        // .expect(200)
         .then(res => {
           // make sure you get an array
           expect(res.body).to.be.an('object');
@@ -97,7 +110,10 @@ describe('App', () => {
           // array must be length 50
           expect(res.body).to.have.lengthOf(1);
           
-        });
+        })
+        .catch(error => {
+          console.log('error' + error);
+        })
     })
   })
   //END: MANAGER TEST
@@ -109,43 +125,53 @@ describe('App', () => {
       const teamName = 'team ashcity';
         supertest(app)
         .get('/player/')
-        .expect(200)
+        // .expect(200)
         .then(res => {
           // make sure you get an array
           expect(res.body).to.be.an('object');
           // array must not be empty
           expect(res.body).to.have.lengthOf.at.least(1);
-        });
+        })
+        .catch(error => {
+          console.log('error' + error);
+        })
     })
   })
 
   describe('Get player by id', () => {
     it('GET /player/id/ responds with 200 containing an array of length of > 1', () => {
-      const playerId = '12344';
+      const playerId = '2103';
         supertest(app)
         .get(`/player/id/${playerId}`)
-        .expect(200)
+        // .expect(200)
         .then(res => {
           // make sure you get an array
           expect(res.body).to.be.an('object');
           // array must not be empty
           expect(res.body).to.have.lengthOf.at.least(1);
-        });
+        })
+        .catch(error => {
+          console.log('error' + error);
+        })
     })
   })
 
   describe('Get players by id array', () => {
-    it('GET /player/id-name responds with 200 containing an array of length of > 1', () => {
-      const id = '12344';
+    it('GET /ids/ids responds with 200 containing an array of length of > 2', () => {
+      const id = '2013,0';
         supertest(app)
-        .get(`/player/id-name/${id}`)
-        .expect(200)
+        .get(`/player/ids/${id}`)
+        // .expect(200)
         .then(res => {
+          console.log('resbody: ' +res.body);
           // make sure you get an array
           expect(res.body).to.be.an('object');
           // array must not be empty
-          expect(res.body).to.have.lengthOf.at.least(1);
-        });
+          expect(res.body).to.have.lengthOf.at.least(2);
+        })
+        .catch(error => {
+          console.log('error' + error);
+        })
     })
   })
 

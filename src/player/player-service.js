@@ -7,23 +7,23 @@ const PlayerService = {
     },
     getPlayersByIds(knex, ids) {
         let playerIds = ids.split(',');
-        let selectStatements = unionAll(knex, playerIds);
+        let selectStatements = this.unionAll(knex, playerIds);
         return knex.select(knex.raw(`player_info-> '${selectStatements[0]}' as player`)).from('player').unionAll(selectStatements);
     },
     unionAll(knex, ids) {
         let selectStatements = [];
-        let totalPlayers = playerIds.length;
+        let totalPlayers = ids.length;
 
         unionAllStatements = (statements) => {
             return statements;
         }
         let completeSelectStatements = ids.forEach((id, index) => {
-            let select = getPlayerById(knex, id);
+            let select = this.getPlayerById(knex, id);
             if(index > 0) {
                 selectStatements.push(select);
             }else if(index == totalPlayers - 1) {
                 selectStatements.push(select);
-                unionAll(selectStatements);
+                unionAllStatements(selectStatements);
             } 
         })
         return completeSelectStatements;
