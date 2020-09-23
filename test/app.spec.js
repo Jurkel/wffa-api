@@ -13,11 +13,11 @@ describe('App', () => {
 //START: MANAGER TEST
 
   describe('GET /manager', () => {
-    it('manager responds with 200 containing an array of length 12', () => {
+    it('manager responds with 200 containing an array of length 12', (done) => {
          supertest(app)
         .get('/manager')
-        // .expect(200)
-        .then(res => {
+        .expect(200)
+        .end(res => {
           console.log('res: ' + res.body)
           // make sure you get an array
           expect(res.body).to.be.an('array');
@@ -25,27 +25,26 @@ describe('App', () => {
           expect(res.body).to.have.lengthOf.at.least(1);
           // array must be length 12
           expect(res.body).to.have.lengthOf(12);
+          done();
       
-        })
-        .catch(error => {
-          console.log('error' + error);
         })
     })
 })
   
   describe('manager id', () => {
     it('GET /manager/id responds with 200 containing an array of length of 1 -1', () => {
-      const id = 'idhere';
+      const id = '481637392860573696';
         supertest(app)
-        .get(`/registration/${id}`)
+        .get(`/manager/${id}`)
         // .expect(200)
         .then(res => {
           // make sure you get an array
-          expect(res.body).to.be.an('object');
+          expect(res.body).to.be.an('array');
           // array must not be empty
           expect(res.body).to.have.lengthOf.at.least(1);
           // array must be length 50
           expect(res.body).to.have.lengthOf(1);
+          expect(res.body).to.have.property("owner_id");
           
         })
         .catch(error => {
