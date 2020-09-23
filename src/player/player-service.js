@@ -6,7 +6,7 @@ const PlayerService = {
         return knex.select(knex.raw(`player_info-> '${id}' as player`)).from('player');
     },
     getPlayersByIds(knex, ids) {
-        let playerIds = ids.split('|') || ids.split('%7C');
+        let playerIds = ids.split('-');
         let dynamicSelectStatement = this.retrieveDynamicQuery(playerIds);
         console.log('dynamicSelectStatement: ' + dynamicSelectStatement);
         return knex.raw(`${dynamicSelectStatement}`);

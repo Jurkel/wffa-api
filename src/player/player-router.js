@@ -54,7 +54,6 @@ playerRouter
 playerRouter
 .route('/ids/:playerIds')
 .get((req, res, next) => {
-    console.log('playerIds call req: ' + req.params.playerIds);
     PlayerService.getPlayersByIds(req.app.get('db'), req.params.playerIds)
     .then((players) => {
         if(!players) {
