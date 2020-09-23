@@ -6,35 +6,28 @@ const PlayerService = {
         return knex.select(knex.raw(`player_info-> '${id}' as player`)).from('player');
     },
     getPlayersByIds(knex, ids) {
-        console.log('getPlayersByIds function ids coming in: ' + ids);
-        let playerIds = ids.split('|') || ids.split('%7C');
-        console.log('getPlayersByIds function ids split: ' + playerIds);
-        let one = playerIds[0];
-        let two= playerIds[1];
-        console.log('getPlayersByIds function id 0: ' + playerIds[0]);
-        console.log('getPlayersByIds function id 1: ' + playerIds[1]);
-        console.log(knex.raw(`select player_info-> '${one}' as player from player union all select player_info-> '${two}' from player`));
-        // let selectStatements = this.unionAll(knex, playerIds);
-        return knex.raw(`select player_info-> '${one}' as player from player union all select player_info-> '${two}' from player`);
-    },
-    // unionAll(knex, ids) {
-    //     let selectStatements = [];
-    //     let totalPlayes = ids.length;
+        let playerIds = ids.split('|') || ids.split('%7C');
+        let dynamicSelectStatement = this.retrieveDynamicQuery(playerIds);
+        console.log('dynamicSelectStatement: ' + dynamicSelectStatement);
+        return knex.raw(`${dynamicSelectStatement}`);
+    },
+    retrieveDynamicQuery(ids) {
+        let selects = '';
+        let totalPlayers = ids.length;
 
-    //     unionAllStatements = (statements) => {
-    //         return statements;
-    //     }
-    //     let completeSelectStatements = ids.forEach((id, index) => {
-    //         let select = this.getPlayerById(knex, id);
-    //         if(index > 0) {
-    //             selectStatements.push(select);
-    //         }else if(index == totalPlayers - 1) {
-    //             selectStatements.push(select);
-    //             unionAllStatements(selectStatements);
-    //         } 
-    //     })
-    //     return completeSelectStatements;
-    // },
+        dynamicSelect = (id) => {
+            return `select player_info-> '${id}' as player from player`;
+        }
+        ids.forEach((id, index) => {
+            let select = this.dynamicSelect(id);
+            if (index == totalPlayers - 1) {
+                selects += select;
+            } else {
+                selects += select + 'union all ';
+            }
+        })
+        return selects;
+    },
     updatePlayerInfo(knex, data) {
         let dataString = JSON.stringify(data).replace(/'/g, '');
         dataString = dataString.replace(/""/g, '"');

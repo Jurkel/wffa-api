@@ -69,7 +69,7 @@ playerRouter
     .catch(next);
 })
 .get((req, res, next) => {
-    res.json(res.players);
+    res.json(res.players['rows']);
 })
 
 module.exports = playerRouter;
