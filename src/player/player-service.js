@@ -14,7 +14,7 @@ const PlayerService = {
 
         // let selectStatements = this.unionAll(knex, playerIds);
         return knex.select(knex.raw(`player_info-> '${playerIds[0]}' as player`)).from('player')
-        .unionAll([knex.select(knex.raw(`player_info-> '${playerIds[1]}' as player`)).from('player')]);
+        .unionAll(knex.raw(`select player_info-> '${playerIds[1]}'`).from('player'));
     },
     // unionAll(knex, ids) {
     //     let selectStatements = [];
