@@ -6,10 +6,13 @@ const PlayerService = {
         return knex.select(knex.raw(`player_info-> '${id}' as player`)).from('player');
     },
     getPlayersByIds(knex, ids) {
+        console.log('getPlayersByIds function ids coming in: ' + ids);
         let playerIds = ids.split('|') || ids.split('%7C');
+        console.log('getPlayersByIds function ids split: ' + playerIds);
+
         // let selectStatements = this.unionAll(knex, playerIds);
         return knex.select(knex.raw(`player_info-> '${playerIds[0]}' as player`)).from('player')
-        .unionAll(knex.select(knex.raw(`player_info-> '${playerIds[1]}' as player`)));
+        .unionAll([knex.select(knex.raw(`player_info-> '${playerIds[1]}' as player`))]);
     },
     // unionAll(knex, ids) {
     //     let selectStatements = [];
