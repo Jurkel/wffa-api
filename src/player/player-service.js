@@ -14,7 +14,9 @@ const PlayerService = {
         console.log('getPlayersByIds function id 0: ' + playerIds[0]);
         console.log('getPlayersByIds function id 1: ' + playerIds[1]);
         let union = knex.select(knex.raw(`player_info-> '${one}' as player`)).from('player')
-        .union(knex.raw(`select player_info-> '${two}'`).from('player'));
+        .unionAll(function() {
+            this.select(knex.raw(`player_info-> '${two}'`).from('player'))
+        });
         // let selectStatements = this.unionAll(knex, playerIds);
         console.log('union statement: ' + union);
         return union;
