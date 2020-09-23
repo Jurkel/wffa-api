@@ -9,10 +9,12 @@ const PlayerService = {
         console.log('getPlayersByIds function ids coming in: ' + ids);
         let playerIds = ids.split('|') || ids.split('%7C');
         console.log('getPlayersByIds function ids split: ' + playerIds);
+        let one = playerIds[0];
+        let two= playerIds[1];
         console.log('getPlayersByIds function id 0: ' + playerIds[0]);
         console.log('getPlayersByIds function id 1: ' + playerIds[1]);
-        let union = knex.select(knex.raw(`player_info-> '${playerIds[0]}' as player`)).from('player')
-        .union(knex.raw(`select player_info-> '${playerIds[1]}'`).from('player'));
+        let union = knex.select(knex.raw(`player_info-> '${one}' as player`)).from('player')
+        .union(knex.raw(`select player_info-> '${two}'`).from('player'));
         // let selectStatements = this.unionAll(knex, playerIds);
         console.log('union statement: ' + union);
         return union;
