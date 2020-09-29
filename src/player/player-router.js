@@ -20,17 +20,6 @@ playerRouter
 .get((req, res, next) => {
     res.json(res.players);
 })
-.put((req, res, next) => {
-    PlayerService.updatePlayerInfo(req.app.get('db'), req.body)
-    .then((updatePlayers) => {
-        if(!updatePlayers) {
-            return res.status(404).json( {
-                error: {message: 'Players cannot be updated'}
-            }) 
-        }
-        return res.status(200).send('Players successfully updated');
-    })
-})
 
 playerRouter
 .route('/id/:playerId')

@@ -39,17 +39,6 @@ managerRouter
 .get((req, res, next) => {
     res.json(res.managerId);
 })
-.put((req, res, next) => {
-    ManagerService.updateManagerById(req.app.get('db'), req.params.managerId, req.body)
-    .then((updateManager) => {
-        if(!updateManager) {
-            return res.status(404).json( {
-                error: {message: 'Manager cannot be updated'}
-            }) 
-        }
-        return res.status(200).send('Manager:' + req.params.managerId + ' successfully updated');
-    })
-})
 
 managerRouter
 .route('/first/:firstName')
@@ -107,17 +96,6 @@ managerRouter
 })
 .get((req, res, next) => {
     res.json(res.displayName);
-})
-.put((req, res, next) => {
-    ManagerService.updateManagerByDisplayName(req.app.get('db'), req.params.displayName, req.body)
-    .then((updateManager) => {
-        if(!updateManager) {
-            return res.status(404).json( {
-                error: {message: 'Manager: Display name cannot be updated'}
-            }) 
-        }
-        return res.status(200).send('Display Name:' + req.params.displayName + ' successfully updated');
-    })
 })
 
 module.exports = managerRouter;
